@@ -1,6 +1,13 @@
 package Metier;
 
-public interface I_Produit {
+public interface Produit {
+
+	int quantiteStock = 0;
+	String nom = null;
+	double prixUnitaireHT = 0;
+
+
+
 
 
 
