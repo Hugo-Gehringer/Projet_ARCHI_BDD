@@ -1,9 +1,9 @@
 package Metier;
 
+
 import java.util.List;
 
 public interface I_Catalogue {
-
 	public abstract boolean addProduit(I_Produit produit);
 	public abstract boolean addProduit(String nom, double prix, int qte);
 	public abstract int addProduits(List<I_Produit> l);

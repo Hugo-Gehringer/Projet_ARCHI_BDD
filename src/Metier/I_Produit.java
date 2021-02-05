@@ -2,6 +2,9 @@ package Metier;
 
 public interface I_Produit {
 
+
+
+
 	public abstract boolean ajouter(int qteAchetee);
 	public abstract boolean enlever(int qteVendue);
 	public abstract String getNom();
