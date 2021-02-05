@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# CodeStream ignored files
+/../../Projet_ARCHI_BDD\.idea/codestream.xml
+# Datasource local storage ignored files
+/../../../../../../:\Users\hugog\IdeaProjects\Projet_ARCHI_BDD\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
