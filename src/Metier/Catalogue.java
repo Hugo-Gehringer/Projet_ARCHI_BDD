@@ -18,8 +18,6 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
-
-
         Produit newProduit=new Produit(nom,prix,qte);
         return listProduit.add(newProduit);
     }
@@ -49,7 +47,7 @@ public class Catalogue implements I_Catalogue {
     public boolean acheterStock(String nomProduit, int qteAchetee) {
         for (Produit produit:listProduit) {
             if (produit.getNom().equals(nomProduit)){
-               // produit.setQte(qteAchetee+produit.getQte());
+                produit.setQuantiteStock(qteAchetee+produit.getQuantite());
                 return true;
             }
         }
@@ -60,7 +58,7 @@ public class Catalogue implements I_Catalogue {
     public boolean vendreStock(String nomProduit, int qteVendue) {
         for (Produit produit:listProduit) {
             if (produit.getNom().equals(nomProduit)){
-                // produit.setQte(produit.getQte()-qteAchetee);
+                 produit.setQuantiteStock(produit.getQuantite()-qteVendue);
                 return true;
             }
         }
@@ -82,7 +80,7 @@ public class Catalogue implements I_Catalogue {
     public double getMontantTotalTTC() {
         double montantTotal=0;
         for (Produit produit:listProduit) {
-         //   montantTotal+=produit.getMontantTTC;
+            montantTotal+=produit.getPrixStockTTC();
         }
         return montantTotal;
     }
