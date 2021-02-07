@@ -8,6 +8,12 @@ public class Produit implements I_Produit {
     double tauxTVA = 0.2;
 
 
+    public Produit(String nom, double prixUnitaireHT,int quantiteStock) {
+        this.quantiteStock = quantiteStock;
+        this.nom = nom;
+        this.prixUnitaireHT = prixUnitaireHT;
+    }
+
     @Override //Je considère que cette méthode doit ajouter une quantite au stock, et si c'est fait elle retourne TRUE
     public boolean ajouter(int qteAchetee) {
         boolean ajout = false;
@@ -58,4 +64,11 @@ public class Produit implements I_Produit {
     }
 
 
+    public void setQuantiteStock(int quantiteStock) {
+        this.quantiteStock = quantiteStock;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 }
