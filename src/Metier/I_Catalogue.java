@@ -1,18 +1,15 @@
-package Interface;
+package Metier;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public interface Catalogue {
+public interface I_Catalogue {
 
 	ArrayList<Produit> listProduit=new ArrayList<>();
 
 
 
-	public abstract boolean addProduit(Produit produit){
-
-
-	}
+	public abstract boolean addProduit(Produit produit);
 	public abstract boolean addProduit(String nom, double prix, int qte);
 	public abstract int addProduits(List<Produit> l);
 	public abstract boolean removeProduit(String nom);
