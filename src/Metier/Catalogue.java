@@ -58,7 +58,7 @@ public class Catalogue implements I_Catalogue {
     public boolean vendreStock(String nomProduit, int qteVendue) {
         for (Produit produit:listProduit) {
             if (produit.getNom().equals(nomProduit)){
-                // produit.setQte(produit.getQte()-qteAchetee);
+                 produit.setQuantiteStock(produit.getQuantite()-qteVendue);
                 return true;
             }
         }
