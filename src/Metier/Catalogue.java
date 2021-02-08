@@ -23,9 +23,9 @@ public class Catalogue implements I_Catalogue {
     }
 
     @Override
-    public int addProduits(List<Produit> l) {
+    public int addProduits(List<I_Produit> l) {
         int nbProduit=0;
-        for (Produit produit:l) {
+        for (I_Produit produit:l) {
             nbProduit++;
             listProduit.add(produit);
         }
