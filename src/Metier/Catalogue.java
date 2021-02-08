@@ -30,12 +30,15 @@ public class Catalogue implements I_Catalogue {
     @Override
     public int addProduits(List<I_Produit> l) {
         int nbProduit=0;
-        if (l.size()==0){
-
-        }
-        for (I_Produit produit:l) {
-            nbProduit++;
-            listProduit.add(produit);
+        if(l != null) {
+            if (l.size() != 0) {
+                for (I_Produit produit : l) {
+                    if (produit.getPrixUnitaireHT() > 0) {
+                        nbProduit++;
+                        listProduit.add(produit);
+                    }
+                }
+            }
         }
         return nbProduit;
     }
@@ -96,7 +99,7 @@ public class Catalogue implements I_Catalogue {
             nomProduits[i]=produit.getNom();
             i++;
         }
-       return nomProduits;
+        return nomProduits;
     }
 
     @Override
