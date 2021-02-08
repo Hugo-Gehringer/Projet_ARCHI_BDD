@@ -413,7 +413,7 @@ public class CatalogueTest2 {
 	}
 
 	@Test
-	public void testAddProduits_avecStocksNull() {
+	public void testAddProduits_avecStocksNull(){
 		List<I_Produit> liste = new ArrayList<I_Produit>();
 		I_Produit p1 = createProduit("Mars", 15, 2);
 		I_Produit p2 = createProduit("Snickers", 1, 0);
