@@ -1,7 +1,6 @@
 package Metier;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Catalogue implements I_Catalogue {
 
@@ -13,7 +12,10 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(I_Produit produit) {
-        return listProduit.add(produit);
+        if (produit!=null) {
+            return listProduit.add(produit);
+        }
+        return false;
     }
 
     @Override
@@ -25,6 +27,9 @@ public class Catalogue implements I_Catalogue {
     @Override
     public int addProduits(List<I_Produit> l) {
         int nbProduit=0;
+        if (l.size()==0){
+
+        }
         for (I_Produit produit:l) {
             nbProduit++;
             listProduit.add(produit);
@@ -67,8 +72,17 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public String[] getNomProduits() {
+        if (listProduit.size()>0) {
+            Collections.sort(listProduit, new Comparator<I_Produit>() {
+                @Override
+                public int compare(I_Produit o1, I_Produit o2) {
+                    return o1.getNom().compareTo(o2.getNom());
+                }
+            });
+        }
         int i=0;
         String[] nomProduits=new String[listProduit.size()];
+
         for (I_Produit produit:listProduit) {
             nomProduits[i]=produit.getNom();
             i++;
