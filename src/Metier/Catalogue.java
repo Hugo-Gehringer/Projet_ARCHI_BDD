@@ -30,8 +30,8 @@ public class Catalogue implements I_Catalogue {
     @Override
     public int addProduits(List<I_Produit> l) {
         int nbProduit=0;
-        if (l.size()==0){
-
+        if (l==null){
+            return 0;
         }
         for (I_Produit produit:l) {
             nbProduit++;
@@ -93,7 +93,7 @@ public class Catalogue implements I_Catalogue {
         String[] nomProduits=new String[listProduit.size()];
 
         for (I_Produit produit:listProduit) {
-            nomProduits[i]=produit.getNom();
+            nomProduits[i]=produit.getNom().replaceAll("\\s+", "");
             i++;
         }
        return nomProduits;
