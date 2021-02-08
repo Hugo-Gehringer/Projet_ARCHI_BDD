@@ -20,13 +20,13 @@ public class CatalogueTest {
 	@Before
 	public void setUp() {
 		cat = new Catalogue();
-//		Si votre Catalogue est un Singleton, il faut changer la ligne pr�c�dente puis vider le Catalogue avec la m�thode clear() comme indiqu� � la ligne suivante
+//		Si votre Catalogue est un Singleton, il faut changer la ligne precedente puis vider le Catalogue avec la methode clear() comme indique a la ligne suivante
 //		cat.clear();
 	}
 
 	@Test
 	public void testConstructeurCatalogue() {
-		assertNotNull("cr�er catalogue", cat);
+		assertNotNull("creer catalogue", cat);
 	}
 
 	@Test
@@ -92,7 +92,7 @@ public class CatalogueTest {
 		I_Produit p1 = createProduit("Mars", 10, 1);
 		cat.addProduit(p1);
 		I_Produit p2 = createProduit(" Mars", 15, 2);
-		assertFalse("ajout deux produits avec m�me nom mais un avec des espaces au d�but", cat.addProduit(p2));
+		assertFalse("ajout deux produits avec meme nom mais un avec des espaces au debut", cat.addProduit(p2));
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class CatalogueTest {
 		I_Produit p1 = createProduit("Mars", 10, 1);
 		cat.addProduit(p1);
 		I_Produit p2 = createProduit("	Mars", 15, 2);
-		assertFalse("ajout deux produits avec m�me nom mais un avec des tabulations au d�but", cat.addProduit(p2));
+		assertFalse("ajout deux produits avec meme nom mais un avec des tabulations au d�but", cat.addProduit(p2));
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class CatalogueTest {
 		I_Produit p1 = createProduit("Mars", 10, 1);
 		cat.addProduit(p1);
 		I_Produit p2 = createProduit("Mars ", 15, 2);
-		assertFalse("ajout deux produits avec m�me nom mais un avec des espaces � la fin", cat.addProduit(p2));
+		assertFalse("ajout deux produits avec meme nom mais un avec des espaces a la fin", cat.addProduit(p2));
 	}
 
 	@Test
@@ -116,7 +116,7 @@ public class CatalogueTest {
 		I_Produit p1 = createProduit("Mars", 10, 1);
 		cat.addProduit(p1);
 		I_Produit p2 = createProduit("Mars	", 15, 2);
-		assertFalse("ajout deux produits avec m�me nom mais un avec des tabulations � la fin", cat.addProduit(p2));
+		assertFalse("ajout deux produits avec meme nom mais un avec des tabulations a la fin", cat.addProduit(p2));
 	}
 
 	@Test
