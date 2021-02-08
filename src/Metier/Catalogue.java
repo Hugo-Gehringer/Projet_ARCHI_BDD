@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Catalogue implements I_Catalogue {
 
-    private ArrayList<Produit> listProduit;
+    private ArrayList<I_Produit> listProduit;
 
     public Catalogue() {
         this.listProduit =new ArrayList<>();
     }
 
     @Override
-    public boolean addProduit(Produit produit) {
+    public boolean addProduit(I_Produit produit) {
         return listProduit.add(produit);
     }
 
@@ -34,7 +34,7 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean removeProduit(String nom) {
-        for (Produit produit:listProduit) {
+        for (I_Produit produit:listProduit) {
             if (produit.getNom().equals(nom)){
                 listProduit.remove(produit);
                 return true;
@@ -45,9 +45,9 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean acheterStock(String nomProduit, int qteAchetee) {
-        for (Produit produit:listProduit) {
+        for (I_Produit produit:listProduit) {
             if (produit.getNom().equals(nomProduit)){
-                produit.setQuantiteStock(qteAchetee+produit.getQuantite());
+                produit.ajouter(qteAchetee);
                 return true;
             }
         }
@@ -56,9 +56,9 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean vendreStock(String nomProduit, int qteVendue) {
-        for (Produit produit:listProduit) {
+        for (I_Produit produit:listProduit) {
             if (produit.getNom().equals(nomProduit)){
-                 produit.setQuantiteStock(produit.getQuantite()-qteVendue);
+                 produit.enlever(qteVendue);
                 return true;
             }
         }
@@ -69,7 +69,7 @@ public class Catalogue implements I_Catalogue {
     public String[] getNomProduits() {
         int i=0;
         String[] nomProduits=new String[listProduit.size()];
-        for (Produit produit:listProduit) {
+        for (I_Produit produit:listProduit) {
             nomProduits[i]=produit.getNom();
             i++;
         }
@@ -79,7 +79,7 @@ public class Catalogue implements I_Catalogue {
     @Override
     public double getMontantTotalTTC() {
         double montantTotal=0;
-        for (Produit produit:listProduit) {
+        for (I_Produit produit:listProduit) {
             montantTotal+=produit.getPrixStockTTC();
         }
         return montantTotal;
