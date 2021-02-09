@@ -120,10 +120,11 @@ public class Catalogue implements I_Catalogue {
         String[] nomProduits=new String[listProduit.size()];
 
         for (I_Produit produit:listProduit) {
+            nomProduits[i] = produit.getNom().replace("\t", " ");
             nomProduits[i]=produit.getNom().trim();
-            //nomProduits[i]=produit.getNom().replaceAll("\\s+", " ");
-            
-
+            System.out.println(nomProduits[i]);
+            //nomProduits[i]=produit.getNom().replaceAll("\\s", "");
+            //nomProduits[i]= produit.getNom().replace("\t", " ");
             i++;
         }
        return nomProduits;
@@ -148,7 +149,7 @@ public class Catalogue implements I_Catalogue {
         DecimalFormat df=new DecimalFormat("0.00");
         String strResult="";
         for (I_Produit produit:this.listProduit) {
-            strResult+=produit.getNom()+" - prix HT : "+df.format(produit.getPrixUnitaireHT())+"€ - prix TTC : "+df.format(produit.getPrixUnitaireTTC())+"€ - quantité en stock : "+produit.getQuantite()+ "\n";
+            strResult+=produit.getNom().trim()+" - prix HT : "+df.format(produit.getPrixUnitaireHT())+" € - prix TTC : "+df.format(produit.getPrixUnitaireTTC())+" € - quantité en stock : "+produit.getQuantite()+ "\n";
 
         }
         strResult+="\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
