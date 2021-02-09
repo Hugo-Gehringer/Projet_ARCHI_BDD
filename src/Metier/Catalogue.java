@@ -1,5 +1,8 @@
 package Metier;
 
+import org.junit.platform.commons.util.StringUtils;
+
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Catalogue implements I_Catalogue {
@@ -12,8 +15,14 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(I_Produit produit) {
-        if (produit==null || listProduit.contains(produit)) {
+
+        if (produit==null || listProduit.contains(produit)|| produit.getPrixUnitaireHT()<=0 || produit.getQuantite()<0) {
             return false;
+        }
+        for (String s: getNomProduits()){
+            if (produit.getNom().trim().equals(s.trim())){
+                return false;
+            }
         }
         return listProduit.add(produit);
     }
@@ -21,7 +30,12 @@ public class Catalogue implements I_Catalogue {
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
         Produit newProduit=new Produit(nom,prix,qte);
-        if (listProduit.contains(newProduit)) {
+        for (String nomP:this.getNomProduits()) {
+            if(nomP.equals(nom.replaceAll("\\s+", ""))){
+                return false;
+            }
+        }
+        if (qte<0 || prix<=0) {
             return false;
         }
         return listProduit.add(newProduit);
@@ -29,13 +43,22 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public int addProduits(List<I_Produit> l) {
+        boolean bexiste=false;
         int nbProduit=0;
         if(l != null) {
             if (l.size() != 0) {
                 for (I_Produit produit : l) {
-                    if (produit.getPrixUnitaireHT() > 0) {
-                        nbProduit++;
-                        listProduit.add(produit);
+                    if (produit.getPrixUnitaireHT() > 0 && produit.getQuantite()>=0) {
+                        for (String s : getNomProduits()) {
+                            if (s.equals(produit.getNom())) {
+                                bexiste = true;
+                                break;
+                            }
+                        }
+                        if (bexiste == false) {
+                            nbProduit++;
+                            listProduit.add(produit);
+                        }
                     }
                 }
             }
@@ -96,10 +119,13 @@ public class Catalogue implements I_Catalogue {
         String[] nomProduits=new String[listProduit.size()];
 
         for (I_Produit produit:listProduit) {
-            nomProduits[i]=produit.getNom();
+            nomProduits[i]=produit.getNom().trim();
+            //nomProduits[i]=produit.getNom().replaceAll("\\s+", " ");
+            
+
             i++;
         }
-        return nomProduits;
+       return nomProduits;
     }
 
     @Override
@@ -108,11 +134,17 @@ public class Catalogue implements I_Catalogue {
         for (I_Produit produit:listProduit) {
             montantTotal+=produit.getPrixStockTTC();
         }
-        return Math.round(montantTotal * 100.0) / 100.0;
+        return  Math.round(montantTotal * 100.00) / 100.00;
     }
 
     @Override
     public void clear() {
         listProduit.removeAll(listProduit);
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df=new DecimalFormat("0.00");
+        return "\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
     }
 }
