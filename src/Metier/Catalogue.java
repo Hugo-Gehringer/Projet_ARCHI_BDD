@@ -31,7 +31,7 @@ public class Catalogue implements I_Catalogue {
     public boolean addProduit(String nom, double prix, int qte) {
         Produit newProduit=new Produit(nom,prix,qte);
         for (String nomP:this.getNomProduits()) {
-            if(nomP.equals(nom.replaceAll("\\s+", ""))){
+            if(nomP.equals(nom.replaceAll("\\s", ""))){
                 return false;
             }
         }
@@ -48,9 +48,10 @@ public class Catalogue implements I_Catalogue {
         if(l != null) {
             if (l.size() != 0) {
                 for (I_Produit produit : l) {
+                    bexiste=false;
                     if (produit.getPrixUnitaireHT() > 0 && produit.getQuantite()>=0) {
                         for (String s : getNomProduits()) {
-                            if (s.equals(produit.getNom())) {
+                            if (s.equals(produit.getNom().trim())) {
                                 bexiste = true;
                                 break;
                             }
@@ -145,6 +146,12 @@ public class Catalogue implements I_Catalogue {
     @Override
     public String toString() {
         DecimalFormat df=new DecimalFormat("0.00");
-        return "\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
+        String strResult="";
+        for (I_Produit produit:this.listProduit) {
+            strResult+=produit.getNom()+" - prix HT : "+df.format(produit.getPrixUnitaireHT())+"€ - prix TTC : "+df.format(produit.getPrixUnitaireTTC())+"€ - quantité en stock : "+produit.getQuantite()+ "\n";
+
+        }
+        strResult+="\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
+        return strResult;
     }
 }
