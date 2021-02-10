@@ -152,9 +152,7 @@ public class Catalogue implements I_Catalogue {
     public String toString() {
         DecimalFormat df=new DecimalFormat("0.00");
         String strResult="";
-        for(int i=0;i<this.listProduit.size();i++){
-            I_Produit produit=listProduit.get(i);
-        //for (I_Produit produit:this.listProduit) {
+        for (I_Produit produit:this.listProduit) {
             strResult+=produit.getNom().trim()+" - prix HT : "+df.format(produit.getPrixUnitaireHT())+" € - prix TTC : "+df.format(produit.getPrixUnitaireTTC())+" € - quantité en stock : "+produit.getQuantite()+ "\n";
         }
         strResult+="\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
