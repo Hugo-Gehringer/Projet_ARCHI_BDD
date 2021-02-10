@@ -29,10 +29,11 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
-        Produit newProduit=new Produit(nom.trim().replaceAll("\\s+"," "),prix,qte);
+        String nomCorrige=nom.trim().replaceAll("\\s+"," ");
+        Produit newProduit=new Produit(nomCorrige,prix,qte);
         for (I_Produit produit:listProduit) {
             String nomP=produit.getNom();
-            if(nomP.equals(nom.replaceAll("\\s", ""))){
+            if(nomP.equals(nomCorrige)){
                 return false;
             }
         }
