@@ -30,7 +30,8 @@ public class Catalogue implements I_Catalogue {
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
         Produit newProduit=new Produit(nom,prix,qte);
-        for (String nomP:this.getNomProduits()) {
+        for (I_Produit produit:listProduit) {
+            String nomP=produit.getNom();
             if(nomP.equals(nom.replaceAll("\\s", ""))){
                 return false;
             }
@@ -148,7 +149,9 @@ public class Catalogue implements I_Catalogue {
     public String toString() {
         DecimalFormat df=new DecimalFormat("0.00");
         String strResult="";
-        for (I_Produit produit:this.listProduit) {
+        for(int i=0;i<this.listProduit.size();i++){
+            I_Produit produit=listProduit.get(i);
+        //for (I_Produit produit:this.listProduit) {
             strResult+=produit.getNom().trim()+" - prix HT : "+df.format(produit.getPrixUnitaireHT())+" € - prix TTC : "+df.format(produit.getPrixUnitaireTTC())+" € - quantité en stock : "+produit.getQuantite()+ "\n";
 
         }
