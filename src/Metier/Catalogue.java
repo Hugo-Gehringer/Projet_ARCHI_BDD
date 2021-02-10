@@ -158,4 +158,8 @@ public class Catalogue implements I_Catalogue {
         strResult+="\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
         return strResult;
     }
+
+    public int tailleListe(){
+        return listProduit.size();
+    }
 }
