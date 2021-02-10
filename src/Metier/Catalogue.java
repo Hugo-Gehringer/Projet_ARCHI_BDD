@@ -29,7 +29,7 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(String nom, double prix, int qte) {
-        Produit newProduit=new Produit(nom,prix,qte);
+        Produit newProduit=new Produit(nom.trim().replaceAll("\\s+"," "),prix,qte);
         for (I_Produit produit:listProduit) {
             String nomP=produit.getNom();
             if(nomP.equals(nom.replaceAll("\\s", ""))){
@@ -121,11 +121,13 @@ public class Catalogue implements I_Catalogue {
         String[] nomProduits=new String[listProduit.size()];
 
         for (I_Produit produit:listProduit) {
-            nomProduits[i] = produit.getNom().replace("\t", " ");
-            nomProduits[i]=produit.getNom().trim();
+
+            nomProduits[i] = produit.getNom().trim().replaceAll("\\s+"," ");
+           // nomProduits[i] = produit.getNom().replace("\t", " ");
+           // System.out.println(nomProduits[i]);
+           // nomProduits[i]=produit.getNom().trim();
+
             System.out.println(nomProduits[i]);
-            //nomProduits[i]=produit.getNom().replaceAll("\\s", "");
-            //nomProduits[i]= produit.getNom().replace("\t", " ");
             i++;
         }
        return nomProduits;
