@@ -1,5 +1,6 @@
 package Presentation;
 
+import Application.EtatStockController;
 import Metier.Catalogue;
 
 import java.awt.*;
@@ -77,7 +78,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 		
 		if (e.getSource() == btAfficher)
-			new FenetreAffichage("ajourd'hui nous allons faire de la programmation en 5 couches");
+			new FenetreAffichage(EtatStockController.getEtat());
 		if (e.getSource() == btNouveauProduit)
 //			new FenetreNouveauProduit(tabCategories);
 			new FenetreNouveauProduit();
