@@ -1,9 +1,6 @@
 package Application;
 
-import Metier.I_Produit;
-import Metier.Produit;
-import Presentation.FenetrePrincipale;
-
+import Metier.Produit;;
 import static Presentation.FenetrePrincipale.catalogueF;
 
 public class AjoutSuppressionController {

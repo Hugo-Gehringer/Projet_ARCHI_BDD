@@ -1,5 +1,7 @@
 package Presentation;
 
+import Application.AchatVenteController;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -32,6 +34,10 @@ public class FenetreVente extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if (e.getSource()==btVente){
+			String nomProd=combo.getSelectedItem().toString();
+			AchatVenteController.Vente(nomProd,Integer.valueOf(txtQuantite.getText()));
+		}
 		this.dispose();
 	}
 
