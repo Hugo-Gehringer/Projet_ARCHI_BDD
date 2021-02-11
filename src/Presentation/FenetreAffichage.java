@@ -1,5 +1,7 @@
 package Presentation;
 
+import Application.EtatStockController;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -40,7 +42,11 @@ public class FenetreAffichage extends JFrame implements ActionListener {
 	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
 	 */
 	public void actionPerformed(ActionEvent e) {
-		this.dispose();
+		EtatStockController.getEtat();
+		if (e.getSource()==btOK){
+			this.dispose();
+		}
+
 	}
 
 }

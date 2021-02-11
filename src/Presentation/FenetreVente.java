@@ -36,9 +36,11 @@ public class FenetreVente extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btVente){
 			String nomProd=combo.getSelectedItem().toString();
-			if (AchatVenteController.Vente(nomProd,txtQuantite.getText())){
-				this.dispose();
+			boolean venteProd =AchatVenteController.Vente(nomProd,txtQuantite.getText());
+			if(venteProd == false) {
+				JOptionPane.showMessageDialog(null, "Quantité achat négative ou nulle ou trop élevé.", "Erreur", JOptionPane.ERROR_MESSAGE);
 			}
+			this.dispose();
 		}
 
 	}

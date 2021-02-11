@@ -13,14 +13,12 @@ public class AjoutSuppressionController {
         if(nom.equals(null) || nom == null || nom.trim().isEmpty()) {
             return false;
         }
-
         try {
             qteS = Integer.parseInt(qteStock);
             prix = Double.parseDouble(prixHT);
         } catch (final NumberFormatException e) {
             return false;
         }
-
         Produit produit = new Produit(nom, prix, qteS);
         return catalogueF.addProduit(produit);
     }
