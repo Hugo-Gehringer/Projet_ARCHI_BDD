@@ -13,8 +13,8 @@ public class AjoutSuppressionController {
         return catalogueF.addProduit(produit);
     }
 
-    public boolean removeProduit(){
-        return false;
+    public static boolean removeProduit(String Nom){
+        return catalogueF.removeProduit(Nom);
     }
 
 
