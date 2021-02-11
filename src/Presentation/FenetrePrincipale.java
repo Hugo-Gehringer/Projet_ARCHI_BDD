@@ -1,13 +1,15 @@
 package Presentation;
 
+import Metier.Catalogue;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-
 public class FenetrePrincipale extends JFrame implements ActionListener,
 		WindowListener {
+
+	public static Catalogue catalogueF=new Catalogue();
 
 	private JButton btAfficher;
 	private JButton btNouveauProduit;
@@ -70,7 +72,7 @@ public class FenetrePrincipale extends JFrame implements ActionListener,
 
 /* tabProduits permet de tester le fonctionnement des fenêtres avec un tableau de noms de produits "en dur"
    Quand l'application fonctionnera, il faudra bien sûr récupérer les noms des produits dans le Catalogue */
-		String[] tabProduits = new String[] { "Mars", "Raider", "Twix", "Treets", "M&M's", "Smarties" };
+		String[] tabProduits = catalogueF.getNomProduits();
 /* Même chose pour tabCategories (partie 4) */ 		
 //		String[] tabCategories = new String[] {"Bio", "Luxe" };
 		

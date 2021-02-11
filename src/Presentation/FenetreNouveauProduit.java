@@ -1,8 +1,11 @@
 package Presentation;
 
+import Application.AjoutSuppressionController;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+
 
 public class FenetreNouveauProduit extends JFrame implements ActionListener {
 
@@ -48,6 +51,11 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+
+		if (e.getSource()==btValider){
+			AjoutSuppressionController.creerProduit(txtNom.getText(),Double.valueOf(txtPrixHT.getText()),Integer.valueOf(txtQte.getText()));
+
+		}
 		this.dispose();
 	}
 

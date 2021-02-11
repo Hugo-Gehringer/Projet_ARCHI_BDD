@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Catalogue implements I_Catalogue {
 
-    private ArrayList<I_Produit> listProduit;
+    public ArrayList<I_Produit> listProduit;
 
     public Catalogue() {
         this.listProduit =new ArrayList<>();
@@ -15,7 +15,6 @@ public class Catalogue implements I_Catalogue {
 
     @Override
     public boolean addProduit(I_Produit produit) {
-
         if (produit==null || listProduit.contains(produit)|| produit.getPrixUnitaireHT()<=0 || produit.getQuantite()<0) {
             return false;
         }
