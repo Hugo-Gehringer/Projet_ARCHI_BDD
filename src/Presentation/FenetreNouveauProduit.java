@@ -53,8 +53,9 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource()==btValider){
-			AjoutSuppressionController.creerProduit(txtNom.getText(),Double.valueOf(txtPrixHT.getText()),Integer.valueOf(txtQte.getText()));
-
+			boolean creerProd =AjoutSuppressionController.creerProduit(txtNom.getText(),txtPrixHT.getText(),txtQte.getText());
+			if(creerProd == false)
+				JOptionPane.showMessageDialog(null,"Votre produit n'a pas pu être créé.","Erreur",JOptionPane.ERROR_MESSAGE);
 		}
 		this.dispose();
 	}

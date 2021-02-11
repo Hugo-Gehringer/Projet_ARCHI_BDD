@@ -2,7 +2,7 @@ package Presentation;
 
 import Application.AjoutSuppressionController;
 
-
+import javax.swing.JOptionPane;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -34,7 +34,9 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btSupprimer){
 			String nomProd = combo.getSelectedItem().toString();
-			AjoutSuppressionController.removeProduit(nomProd);
+			boolean supp = AjoutSuppressionController.removeProduit(nomProd);
+			if(!supp)
+				JOptionPane.showMessageDialog(null,"ALERT MESSAGE","TITLE",JOptionPane.WARNING_MESSAGE);
 		}
 		this.dispose();
 	}
