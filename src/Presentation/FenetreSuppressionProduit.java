@@ -34,9 +34,7 @@ public class FenetreSuppressionProduit extends JFrame implements ActionListener 
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==btSupprimer){
 			String nomProd = combo.getSelectedItem().toString();
-			boolean supp = AjoutSuppressionController.removeProduit(nomProd);
-			if(!supp)
-				JOptionPane.showMessageDialog(null,"ALERT MESSAGE","TITLE",JOptionPane.WARNING_MESSAGE);
+			AjoutSuppressionController.removeProduit(nomProd);
 		}
 		this.dispose();
 	}
