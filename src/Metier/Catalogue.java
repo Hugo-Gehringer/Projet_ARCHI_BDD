@@ -46,21 +46,19 @@ public class Catalogue implements I_Catalogue {
     public int addProduits(List<I_Produit> l) {
         boolean bexiste=false;
         int nbProduit=0;
-        if(l != null) {
-            if (l.size() != 0) {
-                for (I_Produit produit : l) {
-                    bexiste=false;
-                    if (produit.getPrixUnitaireHT() > 0 && produit.getQuantite()>=0) {
-                        for (String s : getNomProduits()) {
-                            if (s.equals(produit.getNom().trim())) {
-                                bexiste = true;
-                                break;
-                            }
+        if(l != null && !l.isEmpty()) {
+            for (I_Produit produit : l) {
+                bexiste=false;
+                if (produit.getPrixUnitaireHT() > 0 && produit.getQuantite()>=0) {
+                    for (String s : getNomProduits()) {
+                        if (s.equals(produit.getNom().trim())) {
+                            bexiste = true;
+                            break;
                         }
-                        if (bexiste == false) {
-                            nbProduit++;
-                            listProduit.add(produit);
-                        }
+                    }
+                    if (bexiste == false) {
+                        nbProduit++;
+                        listProduit.add(produit);
                     }
                 }
             }
@@ -96,11 +94,9 @@ public class Catalogue implements I_Catalogue {
     public boolean vendreStock(String nomProduit, int qteVendue) {
         if(qteVendue >= 1) {
             for (I_Produit produit : listProduit) {
-                if (produit.getNom().equals(nomProduit)) {
-                    if (produit.getQuantite() >= qteVendue) {
-                        produit.enlever(qteVendue);
-                        return true;
-                    }
+                if (produit.getNom().equals(nomProduit) && produit.getQuantite() >= qteVendue) {
+                    produit.enlever(qteVendue);
+                    return true;
                 }
             }
         }
