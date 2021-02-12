@@ -35,18 +35,9 @@ public class FenetreAffichage extends JFrame implements ActionListener {
 
 		this.setVisible(true);
 	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
+	
 	public void actionPerformed(ActionEvent e) {
-		EtatStockController.getEtat();
-		if (e.getSource()==btOK){
 			this.dispose();
-		}
-
 	}
 
 }
