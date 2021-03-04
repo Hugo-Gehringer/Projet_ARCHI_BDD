@@ -2,6 +2,8 @@ package Metier;
 
 import DAO.ProduitDAO;
 
+import java.sql.SQLException;
+
 public class Produit implements I_Produit {
 
     int quantiteStock = 0;
@@ -17,7 +19,8 @@ public class Produit implements I_Produit {
         this.prixUnitaireHT = prixUnitaireHT;
     }
 
-    public void save(){
+    public void save() throws SQLException, ClassNotFoundException {
+        produitDAO=new ProduitDAO();
         produitDAO.create(this);
     }
 

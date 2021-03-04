@@ -1,11 +1,13 @@
 package Application;
 
 import Metier.Produit;;
+import java.sql.SQLException;
+
 import static Presentation.FenetrePrincipale.catalogueF;
 
 public class AjoutSuppressionController {
 
-    public static boolean creerProduit(String nom,String prixHT,String qteStock){
+    public static boolean creerProduit(String nom,String prixHT,String qteStock) throws SQLException, ClassNotFoundException {
         boolean creation = false;
         int qteS = 0;
         Double prix = 0.00;

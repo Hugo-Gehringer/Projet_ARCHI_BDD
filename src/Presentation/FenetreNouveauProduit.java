@@ -4,6 +4,7 @@ import Application.AjoutSuppressionController;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import javax.swing.*;
 
 
@@ -53,7 +54,14 @@ public class FenetreNouveauProduit extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource()==btValider){
-			boolean creerProd =AjoutSuppressionController.creerProduit(txtNom.getText(),txtPrixHT.getText(),txtQte.getText());
+			boolean creerProd = false;
+			try {
+				creerProd = AjoutSuppressionController.creerProduit(txtNom.getText(),txtPrixHT.getText(),txtQte.getText());
+			} catch (SQLException throwables) {
+				throwables.printStackTrace();
+			} catch (ClassNotFoundException classNotFoundException) {
+				classNotFoundException.printStackTrace();
+			}
 			if(creerProd == false)
 				JOptionPane.showMessageDialog(null,"Votre produit n'a pas pu être créé.","Erreur",JOptionPane.ERROR_MESSAGE);
 		}
