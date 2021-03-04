@@ -40,13 +40,17 @@ public class ProduitDAO implements I_ProduitDAO{
         return list;
     }
 
-    public boolean create(I_Produit produit) {
+    public boolean create(I_Produit produit) throws SQLException {
 
-        String sql= "INSERT INTO PRODUIT VALUES ("+
-                "Produit_AutoID.NEXTVAL,'"
-                +produit.getNom()+"',"
-                +produit.getPrixUnitaireHT()+","
-                +produit.getQuantite()+")";
+        String sql = "INSERT INTO PRODUIT(ID, NOM, PRIX_UNITAIRE_HT, QUANTITE) VALUES(?,?,?,?)";
+        PreparedStatement statement = cn.prepareStatement(sql);
+//en spécifiant bien les types SQL cibles
+        statement.setString(1,"Produit_AutoID.NEXTVAL");
+        statement.setString(2,"produit.getNom()");
+        statement.setDouble(3, produit.getPrixUnitaireHT());
+        statement.setInt(4, produit.getQuantite());
+        statement.executeUpdate();
+
         try {
             return st.executeUpdate(sql)!=0;
         } catch (SQLException throwables) {
@@ -60,8 +64,11 @@ public class ProduitDAO implements I_ProduitDAO{
     public Produit read (int idProduit){
         
         try {
-            rs = st.executeQuery("SELECT p.* FROM PRODUIT p WHERE ID="+idProduit+";");
-            rs.next();
+            rs = st.executeQuery("SELECT p.* FROM PRODUIT p WHERE ID= ?");
+            PreparedStatement preparedStatement = cn.prepareStatement(rs);
+            preparedStatement.setInt(1, idProduit);
+            ResultSet rs = preparedStatement.executeQuery();
+            rs.next(); // A quoi sert cette commande ?
             return new Produit(rs.getString(2),rs.getDouble(3),rs.getInt(4));
 
         } catch (SQLException throwables) {
@@ -70,12 +77,17 @@ public class ProduitDAO implements I_ProduitDAO{
         }
     }
 
-    public boolean update(I_Produit produit){
+    public boolean update(I_Produit produit) throws SQLException {
 
-        String sql= "UPDATE PRODUIT SET " +
-                "PRIX_UNITAIRE_HT="+produit.getPrixUnitaireHT()
-                +", QUANTITE="+produit.getQuantite()
-                +" WHERE NOM="+produit.getNom()+";" ;
+        String sql = "update PRODUIT set PRIX_UNITAIRE_HT=? , QUANTITE=? where NOM=?";
+
+        PreparedStatement preparedStatement = cn.prepareStatement(sql);
+
+        preparedStatement.setDouble(1, produit.getPrixUnitaireHT());
+        preparedStatement.setInt(2, produit.getQuantite());
+        preparedStatement.setString(3, produit.getNom());
+
+        int rowsAffected = preparedStatement.executeUpdate();
 
         try {
             return st.executeUpdate(sql)!=0;
@@ -83,10 +95,15 @@ public class ProduitDAO implements I_ProduitDAO{
             return false;
         }
     }
-    public boolean delete(I_Produit produit){
+    public boolean delete(I_Produit produit) throws SQLException {
 
-        String sql= "DELETE FROM PRODUIT WHERE NOM="+produit.getNom()+";" ;
+        String sql= "DELETE FROM PRODUIT WHERE NOM=?" ;
 
+        PreparedStatement preparedStatement = cn.prepareStatement(sql);
+
+        preparedStatement.setString(1, produit.getNom());
+
+        int rowsAffected = preparedStatement.executeUpdate();
         try {
             return st.executeUpdate(sql)!=0;
         } catch (SQLException throwables) {
