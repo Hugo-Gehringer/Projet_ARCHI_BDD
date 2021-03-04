@@ -12,7 +12,17 @@ import javax.swing.*;
 public class FenetrePrincipale extends JFrame implements ActionListener,
 		WindowListener {
 
-	public static Catalogue catalogueF=new Catalogue();
+	public static Catalogue catalogueF;
+
+	static {
+		try {
+			catalogueF = new Catalogue();
+		} catch (SQLException throwables) {
+			throwables.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private JButton btAfficher;
 	private JButton btNouveauProduit;

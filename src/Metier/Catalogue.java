@@ -1,7 +1,9 @@
 package Metier;
 
+import DAO.ProduitDAO;
 import org.junit.platform.commons.util.StringUtils;
 
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.*;
 
@@ -9,8 +11,10 @@ public class Catalogue implements I_Catalogue {
 
     public ArrayList<I_Produit> listProduit;
 
-    public Catalogue() {
+    public Catalogue() throws SQLException, ClassNotFoundException {
         this.listProduit =new ArrayList<>();
+        ProduitDAO produitDAO=new ProduitDAO();
+        this.listProduit=produitDAO.load();
     }
 
     @Override
