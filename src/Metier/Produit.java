@@ -1,17 +1,24 @@
 package Metier;
 
+import DAO.ProduitDAO;
+
 public class Produit implements I_Produit {
 
     int quantiteStock = 0;
     String nom = null;
     double prixUnitaireHT = 0;
     double tauxTVA = 0.2;
+    private ProduitDAO produitDAO;
 
 
     public Produit(String nom, double prixUnitaireHT,int quantiteStock) {
         this.quantiteStock = quantiteStock;
         this.nom = nom;
         this.prixUnitaireHT = prixUnitaireHT;
+    }
+
+    public void save(){
+        produitDAO.create(this);
     }
 
     @Override //Je considère que cette méthode doit ajouter une quantite au stock, et si c'est fait elle retourne TRUE

@@ -20,6 +20,7 @@ public class AjoutSuppressionController {
             return false;
         }
         Produit produit = new Produit(nom, prix, qteS);
+        produit.save();
         return catalogueF.addProduit(produit);
     }
 

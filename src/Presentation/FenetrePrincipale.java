@@ -1,10 +1,12 @@
 package Presentation;
 
 import Application.EtatStockController;
+import DAO.ProduitDAO;
 import Metier.Catalogue;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 import javax.swing.*;
 
 public class FenetrePrincipale extends JFrame implements ActionListener,
