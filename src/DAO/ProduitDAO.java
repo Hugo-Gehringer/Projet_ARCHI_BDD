@@ -7,7 +7,7 @@ import Metier.Produit;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ProduitDAO {
+public class ProduitDAO implements I_ProduitDAO{
     private Produit produit;
     private ResultSet  rs;
     Statement st=null;
@@ -18,13 +18,11 @@ public class ProduitDAO {
         String driver = "oracle.jdbc.driver.OracleDriver";
         String login = "gehringerh";
         String mdp = "oracle123";
-
         rs = null;
         PreparedStatement pst;
-
         Class.forName(driver);
         Connection cn = DriverManager.getConnection(url, login, mdp);
-        st = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        st = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
        
     }
     
@@ -42,16 +40,17 @@ public class ProduitDAO {
         return list;
     }
 
-    public boolean create(Produit produit) {
+    public boolean create(I_Produit produit) {
 
-        String sql= "INSERT INTO PRODUIT VALUES (" +
-                "Produit_AutoID.NEXTVAL,"
-                + produit.getNom()+","
+        String sql= "INSERT INTO PRODUIT VALUES ("+
+                "Produit_AutoID.NEXTVAL,'"
+                +produit.getNom()+"',"
                 +produit.getPrixUnitaireHT()+","
-                +produit.getQuantite()+");";
+                +produit.getQuantite()+")";
         try {
             return st.executeUpdate(sql)!=0;
         } catch (SQLException throwables) {
+            System.out.println(throwables);
             return false;
         }
 
@@ -66,11 +65,12 @@ public class ProduitDAO {
             return new Produit(rs.getString(2),rs.getDouble(3),rs.getInt(4));
 
         } catch (SQLException throwables) {
+            System.out.println(throwables);
             return null;
         }
     }
 
-    public boolean update(Produit produit){
+    public boolean update(I_Produit produit){
 
         String sql= "UPDATE PRODUIT SET " +
                 "PRIX_UNITAIRE_HT="+produit.getPrixUnitaireHT()
@@ -83,13 +83,14 @@ public class ProduitDAO {
             return false;
         }
     }
-    public boolean delete(Produit produit){
+    public boolean delete(I_Produit produit){
 
         String sql= "DELETE FROM PRODUIT WHERE NOM="+produit.getNom()+";" ;
 
         try {
             return st.executeUpdate(sql)!=0;
         } catch (SQLException throwables) {
+            System.out.println(throwables);
             return false;
         }
     }

@@ -10,6 +10,7 @@ import java.util.*;
 public class Catalogue implements I_Catalogue {
 
     public ArrayList<I_Produit> listProduit;
+    private ProduitDAO produitDAO;
 
     public Catalogue() throws SQLException, ClassNotFoundException {
         this.listProduit =new ArrayList<>();
@@ -157,4 +158,5 @@ public class Catalogue implements I_Catalogue {
         strResult+="\n" + "Montant total TTC du stock : "+ df.format(this.getMontantTotalTTC())+" €";
         return strResult;
     }
+
 }

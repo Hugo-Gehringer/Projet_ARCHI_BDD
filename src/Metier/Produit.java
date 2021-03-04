@@ -21,6 +21,7 @@ public class Produit implements I_Produit {
 
     public void save() throws SQLException, ClassNotFoundException {
         produitDAO=new ProduitDAO();
+        System.out.println(this.getNom());
         produitDAO.create(this);
     }
 
