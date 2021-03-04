@@ -17,7 +17,7 @@ public class ProduitDAO {
         String url = "jdbc:oracle:thin:@162.38.222.149:1521:iut";
         String driver = "oracle.jdbc.driver.OracleDriver";
         String login = "gehringerh";
-        String mdp = "gogo0974";
+        String mdp = "oracle123";
 
         rs = null;
         PreparedStatement pst;
