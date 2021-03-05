@@ -11,6 +11,7 @@ public class ProduitDAO implements I_ProduitDAO{
     private Produit produit;
     private ResultSet  rs;
     Statement st=null;
+    private Connection cn;
 
     public ProduitDAO() throws SQLException, ClassNotFoundException {
 
@@ -21,7 +22,7 @@ public class ProduitDAO implements I_ProduitDAO{
         rs = null;
         PreparedStatement pst;
         Class.forName(driver);
-        Connection cn = DriverManager.getConnection(url, login, mdp);
+        cn = DriverManager.getConnection(url, login, mdp);
         st = cn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
        
     }
@@ -64,8 +65,8 @@ public class ProduitDAO implements I_ProduitDAO{
     public Produit read (int idProduit){
         
         try {
-            rs = st.executeQuery("SELECT p.* FROM PRODUIT p WHERE ID= ?");
-            PreparedStatement preparedStatement = cn.prepareStatement(rs);
+            String sql = "SELECT p.* FROM PRODUIT p WHERE ID= ?";
+            PreparedStatement preparedStatement = cn.prepareStatement(sql);
             preparedStatement.setInt(1, idProduit);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next(); // A quoi sert cette commande ?
