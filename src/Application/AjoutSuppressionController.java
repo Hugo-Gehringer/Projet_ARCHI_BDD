@@ -27,6 +27,7 @@ public class AjoutSuppressionController {
     }
 
     public static boolean removeProduit(String Nom){
+
         return catalogueF.removeProduit(Nom);
     }
 

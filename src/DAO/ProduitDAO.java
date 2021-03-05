@@ -43,13 +43,11 @@ public class ProduitDAO implements I_ProduitDAO{
 
     public boolean create(I_Produit produit) throws SQLException {
 
-        String sql = "INSERT INTO PRODUIT(ID, NOM, PRIX_UNITAIRE_HT, QUANTITE) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO PRODUIT(ID, NOM, PRIX_UNITAIRE_HT, QUANTITE) VALUES(Produit_AutoID.NEXTVAL,?,?,?)";
         PreparedStatement statement = cn.prepareStatement(sql);
-//en spécifiant bien les types SQL cibles
-        statement.setString(1,"Produit_AutoID.NEXTVAL");
-        statement.setString(2,"produit.getNom()");
-        statement.setDouble(3, produit.getPrixUnitaireHT());
-        statement.setInt(4, produit.getQuantite());
+        statement.setString(1,produit.getNom());
+        statement.setDouble(2, produit.getPrixUnitaireHT());
+        statement.setInt(3, produit.getQuantite());
         statement.executeUpdate();
 
         try {
